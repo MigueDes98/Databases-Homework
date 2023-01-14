@@ -9,6 +9,83 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+-- Task 1
+select name, address  
+from customers  
+where country = 'United States';
+
+--Task 2
+select *
+from customers
+order by name;
+--El orden es ascendiente (asc) pero para indicar que es descendiente= dsc
+
+--Task 3
+select *
+from products
+where unit_price > 100;
+
+--Task 4
+select *
+from products
+--Empieza con socks:
+--where product_name like'%socks';
+--Termina con socks:
+--where product_name like'socks%';
+--Contiene la palabra socks:
+where product_name like'%socks%';
+
+--Task 5
+select * 
+from products
+order by unit_price desc
+limit 5;
+
+--Task 6
+select products.product_name , products.unit_price, suppliers.supplier_name 
+from products 
+join suppliers on suppliers.id = products.supplier_id;
+
+--Task 7
+select products.product_name, suppliers.supplier_name 
+from products
+join suppliers on suppliers.id = products.supplier_id
+where suppliers.country ='United Kingdom';
+
+--Task 8
+select *
+from orders
+where orders.customer_id = 1;
+
+--Task 9
+select *
+from orders
+join customers on customers.id = orders.customer_id
+where customers.name = 'Hope Crosby';
+
+--Task 10
+select products.product_name, products.unit_price, order_items.quantity 
+from orders
+join order_items on orders.id = order_items.order_id
+join products on order_items.product_id  = products.id
+where orders.order_reference = 'ORD006';
+
+--Task 11
+select customers."name", orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name, order_items.quantity 
+from customers
+join orders on orders.customer_id = customers.id 
+join order_items on orders.id = order_items.order_id
+join products on order_items.product_id  = products.id
+join suppliers on products.supplier_id = suppliers.id;
+
+--Task 12
+select customers."name" 
+from customers
+join orders on orders.customer_id = customers.id 
+join order_items on orders.id = order_items.order_id
+join products on order_items.product_id  = products.id
+join suppliers on products.supplier_id = suppliers.id;
+where suppliers.country = 'China'
 
 
 ```
